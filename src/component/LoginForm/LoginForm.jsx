@@ -2,7 +2,7 @@ import {Container, Form, Button} from 'react-bootstrap';
 
 function Login() {
     return (
-        <Container>
+        <Container className='l-container d-flex justify-content-center'>
             <Form>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>

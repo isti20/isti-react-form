@@ -13,11 +13,18 @@ function Login() {
             ...values,
             [name]:value
         }));
-        console.log(user);
+        // console.log(user);
     };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        console.log("Test", user);
+    };
+
     return (
         <Container>
-            <Form>
+            <Form onSubmit={handleSubmit}>
                 <h2 className="mb-3">Login Form</h2>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>

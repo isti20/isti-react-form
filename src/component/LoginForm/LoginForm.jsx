@@ -7,6 +7,14 @@ function Login() {
         password:"",
     });
 
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setUser((values) => ({
+            ...values,
+            [name]:value
+        }));
+        console.log(user);
+    };
     return (
         <Container>
             <Form>
@@ -17,7 +25,7 @@ function Login() {
                     type="email" 
                     name="email"
                     placeholder="Enter email"
-                    />
+                    onChange={handleInputChange} />
                 </Form.Group>
                 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -26,7 +34,7 @@ function Login() {
                     type="password"
                     name="password"
                     placeholder="Password"
-                    />
+                    onChange={handleInputChange} />
                 </Form.Group>
                 <Button variant="primary" type="submit">
                     Submit

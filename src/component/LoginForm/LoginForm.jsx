@@ -1,10 +1,12 @@
-import {Container, Form, Button} from 'react-bootstrap';
+import { Container, Form, Button } from 'react-bootstrap';
 import { useState } from 'react';
+import * as Validator from 'validatorjs';
 
 function Login() {
     const [user, setUser] = useState({
         email:"",
         password:"",
+        errors:[],
     });
 
     const handleInputChange = (event) => {
@@ -21,7 +23,33 @@ function Login() {
 
         const {email, password} = user;
 
-        console.log("Test", email, password);
+        let data = {
+            email,
+            password,
+        };
+          
+        let rules = {
+            email: 'required|email',
+            password: 'required|min:8'
+        };
+          
+        let validation = new Validator(data, rules, {
+            required: ":attribute tidak boleh kosong",
+            email: "Email tidak valid",
+            min: "Minimal :attribute :min karakter",
+        });
+
+        validation.passes(); // true
+
+        setUser({
+            email,
+            password,
+            errors: [
+                ...validation.errors.get('email'),
+                ...validation.errors.get('password'),
+            ],
+        });
+        // console.log("Test", validation.errors.all());
     };
 
     return (
@@ -47,7 +75,17 @@ function Login() {
                     value={user.password}
                     onChange={handleInputChange} />
                 </Form.Group>
-                <Button variant="primary" type="submit">
+
+                <ul>
+                    {user.errors.map((item, i) => (
+                        <li key={i} className="text-danger">{item}</li>
+                    ))}
+                </ul>
+
+                <Button 
+                variant="primary" 
+                type="submit"
+                >
                     Submit
                 </Button>
             </Form>

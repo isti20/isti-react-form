@@ -19,7 +19,9 @@ function Login() {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        console.log("Test", user);
+        const {email, password} = user;
+
+        console.log("Test", email, password);
     };
 
     return (
@@ -32,6 +34,7 @@ function Login() {
                     type="email" 
                     name="email"
                     placeholder="Enter email"
+                    value={user.email}
                     onChange={handleInputChange} />
                 </Form.Group>
                 
@@ -41,6 +44,7 @@ function Login() {
                     type="password"
                     name="password"
                     placeholder="Password"
+                    value={user.password}
                     onChange={handleInputChange} />
                 </Form.Group>
                 <Button variant="primary" type="submit">

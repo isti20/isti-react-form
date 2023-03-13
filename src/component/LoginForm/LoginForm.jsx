@@ -49,6 +49,7 @@ function Login() {
                 ...validation.errors.get('password'),
             ],
         });
+        alert(`Email: ${user.email} \nPassword: ${user.password}`)
         // console.log("Test", validation.errors.all());
     };
 
